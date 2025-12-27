@@ -1,0 +1,42 @@
+/* Full screen wrapper */
+.login-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;        /* vertical center */
+  justify-content: center;    /* horizontal center */
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 20px;              /* safe spacing on small screens */
+}
+
+/* Login card */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 1rem;
+}
+
+/* Icon circle */
+.login-icon {
+  width: 70px;
+  height: 70px;
+  background-color: #0d6efd;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+/* Remove input shadow on focus */
+.form-control:focus {
+  box-shadow: none;
+}
+
+/* Responsive spacing */
+@media (max-width: 576px) {
+  .login-card {
+    margin: 0 10px;
+  }
+}

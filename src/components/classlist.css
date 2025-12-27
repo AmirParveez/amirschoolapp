@@ -1,0 +1,37 @@
+.page-title {
+  color: #1cc88a;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.btn-modern {
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(28, 200, 138, 0.4);
+}
+
+.search-box {
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.modern-table th {
+  background: linear-gradient(90deg, #4e73df, #1cc88a);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modern-table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.modern-table tr:hover {
+  background-color: #d1f2e5;
+}

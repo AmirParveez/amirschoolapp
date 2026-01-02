@@ -23,12 +23,16 @@ export default function Login() {
     setMsg("");
 
     try {
-      const res = await axios.get(
-        "http://127.0.0.1:5161/api/UserLogin/login",
-        { params: { username, password } }
+      const res = await axios.post(
+        "https://mehzaib.bsite.net/api/user",
+        {
+          username: username,
+          password: password
+        }
       );
 
-      if (res.data.status === "success") {
+
+     if (res.data === true) {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("userID", res.data.userId);
         localStorage.setItem("userName", res.data.username);

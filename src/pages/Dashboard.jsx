@@ -1,102 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./dashboard.css";
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-
-  // ===== COUNTS =====
-  const totalStudents = 120;
-  const boys = 70;
-  const girls = 50;
-
-  const totalEmployees = 25;
-  const maleStaff = 15;
-  const femaleStaff = 10;
-
-  // ===== USER =====
-  const userName =
-    localStorage.getItem("userName") &&
-    localStorage.getItem("userName") !== "undefined"
-      ? localStorage.getItem("userName")
-      : "Admin";
-
-  const session = "2024–25";
-
-  // ===== DATE & TIME =====
-  const [dateTime, setDateTime] = useState(new Date());
-  const [openMenu, setOpenMenu] = useState(false);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDateTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // ===== LOGOUT =====
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
-
   return (
-    <div className="dashboard-wrapper">
-      {/* ⭐ STAR BACKGROUND */}
-      <div className="stars"></div>
-      <div className="stars2"></div>
-      <div className="stars3"></div>
+    <div className="dashboard">
 
-      {/* ===== TOP BAR ===== */}
-      <div className="topbar">
-        <div>
-          <div className="session">Session {session}</div>
-          <div className="datetime">
-            {dateTime.toLocaleDateString()} |{" "}
-            {dateTime.toLocaleTimeString()}
-          </div>
-        </div>
-
-        {/* USER DROPDOWN */}
-        <div className="user-dropdown">
-          <div
-            className="user-box"
-            onClick={() => setOpenMenu(!openMenu)}
-          >
-            <div className="avatar">{userName.charAt(0)}</div>
-            <span>{userName}</span>
-            <i className="fas fa-caret-down"></i>
-          </div>
-
-          {openMenu && (
-            <div className="user-menu">
-              <button onClick={handleLogout}>
-                <i className="fas fa-sign-out-alt"></i> Logout
-              </button>
-            </div>
-          )}
-        </div>
+      <div className="stats">
+        <StatCard title="Total Students" value="120" icon="users" color="blue" />
+        <StatCard title="Boys" value="70" icon="male" color="green" />
+        <StatCard title="Girls" value="50" icon="female" color="pink" />
+        <StatCard title="Total Employees" value="25" icon="user-tie" color="purple" />
+        <StatCard title="Male Staff" value="15" icon="user" color="teal" />
+        <StatCard title="Female Staff" value="10" icon="user-nurse" color="orange" />
       </div>
 
-      {/* ===== DASHBOARD CONTENT ===== */}
-      <div className="dashboard">
-        <div className="stats">
-          <StatCard icon="users" color="blue" title="Total Students" value={totalStudents} />
-          <StatCard icon="male" color="green" title="Boys" value={boys} />
-          <StatCard icon="female" color="pink" title="Girls" value={girls} />
-
-          <StatCard icon="user-tie" color="purple" title="Total Employees" value={totalEmployees} />
-          <StatCard icon="user" color="teal" title="Male Staff" value={maleStaff} />
-          <StatCard icon="user-nurse" color="orange" title="Female Staff" value={femaleStaff} />
-        </div>
-      </div>
     </div>
   );
 }
 
-// ===== REUSABLE CARD =====
-function StatCard({ icon, color, title, value }) {
+function StatCard({ title, value, icon, color }) {
   return (
     <div className="stat-card">
       <div className={`icon-box ${color}`}>

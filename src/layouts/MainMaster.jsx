@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import "./mainMaster.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export default function MainMaster() {
   const location = useLocation();
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="app-layout">
+    <div className={`app-layout ${collapsed ? "collapsed" : ""}`}>
+      
       {/* ===== SIDEBAR ===== */}
       <aside className="sidebar">
 
@@ -26,7 +28,7 @@ export default function MainMaster() {
             className={location.pathname === "/" ? "active" : ""}
           >
             <i className="fas fa-home"></i>
-            Dashboard
+            <span>Dashboard</span>
           </Link>
 
           <Link
@@ -34,7 +36,7 @@ export default function MainMaster() {
             className={location.pathname.startsWith("/fee") ? "active" : ""}
           >
             <i className="fas fa-money-bill-wave"></i>
-            Fee
+            <span>Fee</span>
           </Link>
 
           <Link
@@ -42,7 +44,7 @@ export default function MainMaster() {
             className={location.pathname.startsWith("/students") ? "active" : ""}
           >
             <i className="fas fa-users"></i>
-            Students
+            <span>Students</span>
           </Link>
         </nav>
 
@@ -50,7 +52,22 @@ export default function MainMaster() {
 
       {/* ===== CONTENT ===== */}
       <main className="content">
-        <Outlet />
+
+        {/* TOP BAR */}
+        <div className="content-topbar">
+          <button
+            className="toggle-btn"
+            onClick={() => setCollapsed(!collapsed)}
+          >
+            <i className="fas fa-bars"></i>
+          </button>
+        </div>
+
+        {/* PAGE CONTENT */}
+        <div className="content-body">
+          <Outlet />
+        </div>
+
       </main>
     </div>
   );

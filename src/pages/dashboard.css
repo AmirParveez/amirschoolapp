@@ -1,114 +1,19 @@
-/* ===== GLOBAL RESET ===== */
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: "Inter", system-ui, sans-serif;
-  background: #f4f6fb;
-}
-
-/* ===== TOP BAR ===== */
-.topbar {
-  height: 52px;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  border-bottom: 1px solid #e6e8ee;
-}
-
-.topbar .session {
-  font-size: 14px;
-  font-weight: 600;
-  color: #4f46e5;
-}
-
-/* ===== USER ===== */
-.user-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-}
-
-.avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-/* ===== DASHBOARD ===== */
-.dashboard {
-  padding: 24px;
-}
-
-/* ===== STATS ===== */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.stat-card {
-  background: white;
-  border-radius: 14px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-3px);
-}
-
-.icon-box {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  color: white;
-}
-
-.blue { background: #4f46e5; }
-.green { background: #16a34a; }
-.pink { background: #db2777; }
-
-.stat-title {
-  font-size: 13px;
-  color: #6b7280;
-}
-
-.stat-value {
-  font-size: 22px;
-  font-weight: 700;
-  color: #111827;
-}
-
-body {
+/* ===== WRAPPER ===== */
+.dashboard-wrapper {
+  min-height: 100vh;
   background: #0b0f1a;
-  overflow-x: hidden;
+  position: relative;
+  overflow: hidden;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
+/* ===== STAR BACKGROUND ===== */
 .stars, .stars2, .stars3 {
   position: fixed;
   width: 100%;
   height: 100%;
   background: transparent;
-  z-index: -1;
+  z-index: 0;
 }
 
 .stars {
@@ -130,6 +35,32 @@ body {
   from { background-position: 0 0; }
   to { background-position: 10000px 5000px; }
 }
+
+/* ===== TOP BAR ===== */
+.topbar {
+  height: 56px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.session {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4f46e5;
+}
+
+.datetime {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ===== USER DROPDOWN ===== */
 .user-dropdown {
   position: relative;
 }
@@ -142,44 +73,96 @@ body {
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
-  background: #4f46e5;
-  color: #fff;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
   display: grid;
   place-items: center;
   font-weight: bold;
 }
 
-.dropdown-menu {
+.user-menu {
   position: absolute;
   right: 0;
-  top: 45px;
+  top: 48px;
   background: #1e293b;
-  border-radius: 6px;
-  display: none;
+  border-radius: 8px;
   min-width: 140px;
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-.user-dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu button {
+.user-menu button {
   width: 100%;
   background: none;
   border: none;
-  color: #fff;
-  padding: 10px;
+  color: white;
+  padding: 10px 12px;
   cursor: pointer;
+  text-align: left;
 }
 
-.dropdown-menu button:hover {
+.user-menu button:hover {
   background: #334155;
 }
-.datetime {
-  font-size: 12px;
-  opacity: 0.8;
+
+/* ===== DASHBOARD ===== */
+.dashboard {
+  padding: 24px;
+  position: relative;
+  z-index: 1;
 }
 
+/* ===== STATS GRID ===== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: white;
+}
+
+/* COLORS */
+.blue { background: #4f46e5; }
+.green { background: #16a34a; }
+.pink { background: #db2777; }
+.purple { background: #7c3aed; }
+.teal { background: #0d9488; }
+.orange { background: #ea580c; }
+
+.stat-title {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}

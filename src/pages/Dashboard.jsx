@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./dashboard.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import "./dashboard.css";
 
 export default function Dashboard() {
   const navigate = useNavigate();
 
   // ===== COUNTS =====
   const totalStudents = 120;
-  const boysRoll = 70;
-  const girlsRoll = 50;
+  const boys = 70;
+  const girls = 50;
 
   const totalEmployees = 25;
   const maleStaff = 15;
@@ -26,6 +26,7 @@ export default function Dashboard() {
 
   // ===== DATE & TIME =====
   const [dateTime, setDateTime] = useState(new Date());
+  const [openMenu, setOpenMenu] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -41,8 +42,8 @@ export default function Dashboard() {
   };
 
   return (
-    <>
-      {/* ===== STAR BACKGROUND ===== */}
+    <div className="dashboard-wrapper">
+      {/* ⭐ STAR BACKGROUND */}
       <div className="stars"></div>
       <div className="stars2"></div>
       <div className="stars3"></div>
@@ -57,39 +58,40 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* ===== USER DROPDOWN ===== */}
+        {/* USER DROPDOWN */}
         <div className="user-dropdown">
-          <div className="user-box">
+          <div
+            className="user-box"
+            onClick={() => setOpenMenu(!openMenu)}
+          >
             <div className="avatar">{userName.charAt(0)}</div>
             <span>{userName}</span>
             <i className="fas fa-caret-down"></i>
           </div>
 
-          <div className="dropdown-menu">
-            <button onClick={handleLogout}>
-              <i className="fas fa-sign-out-alt"></i> Logout
-            </button>
-          </div>
+          {openMenu && (
+            <div className="user-menu">
+              <button onClick={handleLogout}>
+                <i className="fas fa-sign-out-alt"></i> Logout
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* ===== DASHBOARD ===== */}
+      {/* ===== DASHBOARD CONTENT ===== */}
       <div className="dashboard">
         <div className="stats">
-
-          {/* STUDENTS */}
           <StatCard icon="users" color="blue" title="Total Students" value={totalStudents} />
-          <StatCard icon="male" color="green" title="Boys" value={boysRoll} />
-          <StatCard icon="female" color="pink" title="Girls" value={girlsRoll} />
+          <StatCard icon="male" color="green" title="Boys" value={boys} />
+          <StatCard icon="female" color="pink" title="Girls" value={girls} />
 
-          {/* EMPLOYEES */}
           <StatCard icon="user-tie" color="purple" title="Total Employees" value={totalEmployees} />
           <StatCard icon="user" color="teal" title="Male Staff" value={maleStaff} />
           <StatCard icon="user-nurse" color="orange" title="Female Staff" value={femaleStaff} />
-
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

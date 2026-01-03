@@ -97,3 +97,89 @@ html, body, #root {
   font-weight: 700;
   color: #111827;
 }
+
+body {
+  background: #0b0f1a;
+  overflow-x: hidden;
+}
+
+.stars, .stars2, .stars3 {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: -1;
+}
+
+.stars {
+  background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  animation: moveStars 50s linear infinite;
+}
+
+.stars2 {
+  background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  animation: moveStars 100s linear infinite;
+}
+
+.stars3 {
+  background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  animation: moveStars 150s linear infinite;
+}
+
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: 10000px 5000px; }
+}
+.user-dropdown {
+  position: relative;
+}
+
+.user-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  background: #4f46e5;
+  color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: #1e293b;
+  border-radius: 6px;
+  display: none;
+  min-width: 140px;
+}
+
+.user-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+  background: #334155;
+}
+.datetime {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
